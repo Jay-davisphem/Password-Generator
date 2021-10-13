@@ -1,0 +1,30 @@
+/*html, body, div, section, article, aside, span,
+h1, h2, h3, h4, p, main, footer, header, img, code, pre{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html{
+  line-height: 1.5;
+}
+h1{
+  font-size: 2em;
+  margin: 0.67em 0;
+  margin: 20px;
+}
+
+.p-img{
+  max-width: 20%;
+}
+
+.small-img{
+  max-width: 10%;
+}
+
+.tech-li{
+  display: flex;
+}*/
