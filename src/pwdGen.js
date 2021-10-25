@@ -2,10 +2,6 @@ const lowerLetters = 'abcdefghijklmnopqrstuvwxyz';
 const upperLetters = lowerLetters.toUpperCase();
 const numbers = '0123456789';
 const specialChr = "!\"#$%&\'()+,-./:;<=?>@[]\\^_\`{|}";
-var tot = '';
-var count = 0;
-var chr = '';
-var n, num, min;
 
 function rand(a, b){
   return Math.floor((b - a + 1) * Math.random()) + a;
@@ -29,43 +25,55 @@ function shuffle(str){
   }
   return str.join('')
 }
-
-function addChrs(is_true, lett){
-  if(is_true){
-    chr += lett;
+function generate(lower=true, upper, number, spChr, len=6){
+  let tot = '';
+  let count = 0;
+  let chr = '';
+  let n, num;
+  if(lower){
+    chr += lowerLetters;
     count += 1
   }
-}
-function appendChrs(is_true, lett){
-  num = rand(parseInt(min/2), min);
-  if(is_true){
-    for(let i=0; i<num; i++)
-      tot += choice(lett);
+  if(upper){
+    chr += upperLetters;
+    count += 1
   }
-}
-function generate(lower=true, upper, number, spChr, len=6){
-  /*var tot = '';
-  var count = 0;
-  var chr = '';
-  var n, num;
-  */
-  addChrs(lower, lowerLetters);
-  addChrs(upper, upperLetters);
-  addChrs(number, numbers);
-  addChrs(spChr, specialChr);
-
+  if(number){
+    chr += numbers;
+    count += 1
+  }
+  if(spChr){
+    chr += specialChr;
+    count += 1
+  }
   if(!count)
     return ''
-  min = len / count;
+  const min = len / count;
 
-  appendChrs(lower, lowerLetters);
-  appendChrs(upper, upperLetters);
-  appendChrs(number, numbers);
-  appendChrs(spChr, specialChr);
+  num = rand(parseInt(min/2), min);
+  if(lower){
+    for(let i=0; i<num; i++)
+      tot += choice(lowerLetters);
+  }
+  num = rand(parseInt(min/2), min);
+  if(upper){
+    for(let i=0; i<num; i++)
+      tot += choice(upperLetters);
+  }
+  num = rand(parseInt(min/2), min);
+  if(number){
+    for(let i=0; i<num; i++)
+      tot += choice(numbers);
+  }
+  num = rand(parseInt(min/2), min);
+  if(spChr){
+    for(let i=0; i<num; i++)
+      tot += choice(specialChr);
+  }
   n = tot.length;
   for(let i=0; i<(len - n); i++)
     tot += choice(chr);
   return shuffle(tot)
 }
 
-console.log(generate(true, true, true, false, 64))
+//export default generate;
